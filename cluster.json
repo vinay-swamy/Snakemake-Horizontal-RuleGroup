@@ -1,0 +1,12 @@
+{
+	"__default__" :
+	{
+		"partition" : "norm",
+		"time" : "0:10:00",
+		"mem" : "2g",
+		"cpus-per-task":1,
+		"output"  : "00log/{rule}_{wildcards}.out",
+		"error" : "00log/{rule}_{wildcards}.err" ,
+		"extra": ""
+	}
+}	
