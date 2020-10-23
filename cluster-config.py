@@ -4,7 +4,7 @@ import subprocess as sp
 import json
 cluster_json_file =sys.argv[1]
 jobscript = sys.argv[2]
-custom_config_rules = ['integrate_00']
+custom_config_rules = ['job_to_bundle']
 with open(cluster_json_file) as j:
     cluster_json = json.load(j)
 #%%
