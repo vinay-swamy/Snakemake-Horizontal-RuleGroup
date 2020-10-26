@@ -19,7 +19,7 @@ rule listener:
         'listener_running.txt'
     shell:
         '''
-        python3 listener.py script_temp job_to_bundle 3 &
+        python3 listener.py script_temp job_to_bundle.sh 3 &
         disown
         touch  {output}
         '''

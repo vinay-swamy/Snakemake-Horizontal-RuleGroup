@@ -12,13 +12,13 @@ num_files = int(args[3])
 # outdir = 'script_temp'
 # sfx = 'job_to_bundle.sh'
 # num_files = 3
-
-
+log = open('listener.log', 'w+')
 
 # %%
 tfiles = []
 while len(tfiles) < num_files:
     tfiles = glob.glob( f'{outdir}/*{sfx}', recursive=True)
+    log.write(f'{len(tfiles)} / {num_files} target files detected' +'\n')
     print(f'{len(tfiles)} / {num_files} target files detected')
     time.sleep(1)
 
@@ -29,9 +29,11 @@ sp.run(f'cat {outdir}/*{sfx} >> {sfx}_all.sh', shell=True)
 sbcmd=f'''sbatch --cpus-per-task=3 \
     --mem=8G \
     --time=01:00:00 \
-    --job-name=job\
+    --job-name=jobsadfasdfasdfsda\
     --partition=quick \
     --output=out.out \
     --error=out.err \
     {sfx}_all.sh'''
 sp.run(sbcmd, shell=True)
+
+log.close()

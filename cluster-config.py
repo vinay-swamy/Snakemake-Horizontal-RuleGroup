@@ -17,15 +17,19 @@ if rule in cluster_json:
         params[key] = cluster_json[rule][key]
 elif rule in custom_config_rules:
     # specifify custom configureations specific rules
+    print(rule)
     if rule == 'job_to_bundle':
-        if rule['wildcards']['wc'] == 'Q':
+        print(job_properties)
+        if job_properties['wildcards']['wc'] == 'Q':
             params = cluster_json['__default__'] 
         else:
             outdir = 'script_temp'
             ec_strings = [f"{key}={job_properties['wildcards'][key]}" for key in job_properties['wildcards'] ]
             ec_strings = '-'.join(ec_strings)
             output = f'{ec_strings}.{rule}.sh'
-            sp.run(f"grep -v '#!/bin/bash' {jobscript}  > {outdir}/{output}", shell=True)
+            sp.run(f"grep -v '#!/bin/sh' {jobscript}  > {outdir}/{output}", shell=True)
+            sys.exit()
+    
 else:# use default parameters
     params = cluster_json['__default__'] 
 
